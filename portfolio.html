@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gabriella Costa</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+        #slideshow {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            touch-action: pan-y; /* 터치 동작에 영향 주지 않도록 설정 */
+        }
+        #portfolio-image {
+            width: 100%;
+            border-radius: 10px;
+            user-select: none; /* 이미지 선택 방지 */
+            -webkit-user-drag: none; /* 이미지 드래그 방지 (모바일 최적화) */
+        }
+        .button {
+            display: block;
+            padding: 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s;
+            margin: 10px auto;
+            width: 250px;
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>My Portfolio</h1>
+        <div id="slideshow">
+            <img id="portfolio-image" src="portfolio1.png" alt="Portfolio">
+        </div>
+        <a href="index.html" class="button">Back to Home</a>
+    </div>
+
+    <script>
+        const images = [
+            "portfolio1.png", "portfolio2.png", "portfolio3.png", 
+            "portfolio4.png", "portfolio5.png", "portfolio6.png", 
+            "portfolio7.png", "portfolio8.png"
+        ];
+        
+        let currentIndex = 0;
+        const portfolioImage = document.getElementById('portfolio-image');
+        let startX = 0;
+
+        function updateImage() {
+            portfolioImage.src = images[currentIndex];
+        }
+
+        // 터치 시작 이벤트
+        portfolioImage.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX; // 터치 시작 시점의 X 좌표 저장
+        });
+
+        // 터치 종료 이벤트
+        portfolioImage.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX; // 터치 종료 시점의 X 좌표 저장
+            const diff = startX - endX;
+
+            // 터치 방향에 따라 이미지 변경 (좌에서 우: 이전 이미지, 우에서 좌: 다음 이미지)
+            if (diff > 50) {
+                nextImage();
+            } else if (diff < -50) {
+                prevImage();
+            }
+        });
+
+        function prevImage() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            updateImage();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateImage();
+        }
+    </script>
+
+</body>
+</html>
