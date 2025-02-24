@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        /* ---- 전체 화면 정렬 ---- */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 400px;
+        }
+        img {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="Contact.png" usemap="#contact-map" alt="Contact">
+        
+        <map name="contact-map">
+            <area shape="rect" coords="40,400,360,450" href="mailto:contatogabrieladacosta@gmail.com" alt="Gmail">
+            <area shape="rect" coords="40,505,360,555" href="https://wa.me/" alt="WhatsApp">
+        </map>
+    </div>
+
+</body>
+</html>
